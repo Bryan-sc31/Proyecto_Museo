@@ -280,13 +280,24 @@ int main()
 	Model llanta("resources/objects/lambo/Wheel.obj");
 	Model casaVieja("resources/objects/casa/OldHouse.obj");
 	
-	//Autos modernos
-	Model AM1("resources/objects/AutosModernos/Koenigs/Koenigs.obj");
-	Model llantaAM1("resources/objects/AutosModernos/Koenigs/WheelKoenig.obj");
-
 	//Autos clasicos
 	Model AC1("resources/objects/AutosClasicos/80S/Body80S.obj");
 	Model llantaAC1("resources/objects/AutosClasicos/80S/WheelsR80S.obj");
+
+	//Autos F1
+	
+	//Autos modernos
+	Model AM1("resources/objects/AutosModernos/FordGT/Body.obj");
+	Model llantaAM1FR("resources/objects/AutosModernos/FordGT/Wheel_FR.obj");
+	Model llantaAM1RR("resources/objects/AutosModernos/FordGT/Wheel_RR.obj");
+
+	Model AM2("resources/objects/AutosModernos/Koenigs/Koenigs.obj");
+	Model llantaAM2("resources/objects/AutosModernos/Koenigs/WheelKoenig.obj");
+	
+	Model AM3("resources/objects/AutosModernos/Speciale95/Body.obj");
+	Model llantaAM3L("resources/objects/AutosModernos/Speciale95/Wheel_L.obj");
+	
+	
 	//Model cubo("resources/objects/cubo/cube02.obj");
 	
 	//Carga de modelos animados 
@@ -433,7 +444,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.5f));
 		staticShader.setMat4("model", model);
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		Room.Draw(staticShader);
+		//Room.Draw(staticShader);
 
 		//Pista
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 70.0f));
@@ -441,41 +452,6 @@ int main()
 		staticShader.setMat4("model", model);
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
 		Pista.Draw(staticShader);
-
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Autos Modernos
-		// -------------------------------------------------------------------------------------------------------------------------
-		
-		//Koenigs
-		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 100.0f));
-		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
-		staticShader.setMat4("model", model);
-		AM1.Draw(staticShader);
-
-		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		staticShader.setMat4("model", model);
-		llantaAM1.Draw(staticShader);//Derecha delantera
-
-		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 22.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		llantaAM1.Draw(staticShader);//Izquierda delantera
-
-		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -22.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		staticShader.setMat4("model", model);
-		llantaAM1.Draw(staticShader);//Derecha trasera
-
-		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, -0.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		llantaAM1.Draw(staticShader);//Izquierda trasera
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Autos Clasicos
@@ -486,7 +462,65 @@ int main()
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setMat4("model", model);
-		AC1.Draw(staticShader);
+		//AC1.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Autos F1
+		// -------------------------------------------------------------------------------------------------------------------------
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Autos Modernos
+		// -------------------------------------------------------------------------------------------------------------------------
+		
+		//FordGT
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 150.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AM1.Draw(staticShader);
+
+		//Koenigs
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(150.0f, 0.0f, 150.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AM2.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		staticShader.setMat4("model", model);
+		llantaAM2.Draw(staticShader);//Derecha delantera
+
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 22.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		llantaAM2.Draw(staticShader);//Izquierda delantera
+
+		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -22.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		staticShader.setMat4("model", model);
+		llantaAM2.Draw(staticShader);//Derecha trasera
+
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, -0.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		llantaAM2.Draw(staticShader);//Izquierda trasera
+
+		//Speciale95
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(200.0f, 0.0f, 150.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AM3.Draw(staticShader);
+		
 
 		/*
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));

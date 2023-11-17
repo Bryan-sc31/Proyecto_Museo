@@ -281,21 +281,48 @@ int main()
 	Model casaVieja("resources/objects/casa/OldHouse.obj");
 	
 	//Autos clasicos
-	Model AC1("resources/objects/AutosClasicos/80S/Body80S.obj");
-	Model llantaAC1("resources/objects/AutosClasicos/80S/WheelsR80S.obj");
+	Model AC1("resources/objects/AutosClasicos/33HotRod/Body.obj");
+	Model AC1DoorL("resources/objects/AutosClasicos/33HotRod/DoorL.obj");
+	Model AC1DoorR("resources/objects/AutosClasicos/33HotRod/DoorR.obj");
+	Model AC1Hood("resources/objects/AutosClasicos/33HotRod/Hood.obj");
+	Model AC1WheelFL("resources/objects/AutosClasicos/33HotRod/WheelFL.obj");
+	Model AC1WheelRL("resources/objects/AutosClasicos/33HotRod/WheelRL.obj");
 
+	Model AC2("resources/objects/AutosClasicos/80S/Body.obj");
+	Model AC2DoorFL("resources/objects/AutosClasicos/80S/DoorFL.obj");
+	Model AC2DoorFR("resources/objects/AutosClasicos/80S/DoorFR.obj");
+	Model AC2DoorRL("resources/objects/AutosClasicos/80S/DoorRL.obj");
+	Model AC2DoorRR("resources/objects/AutosClasicos/80S/DoorRR.obj");
+	Model AC2Wheel("resources/objects/AutosClasicos/80S/Wheel.obj");
+	
+	Model AC3("resources/objects/AutosClasicos/SportCar57/Body.obj");
+	Model AC3DoorL("resources/objects/AutosClasicos/SportCar57/DoorL.obj");
+	Model AC3DoorR("resources/objects/AutosClasicos/SportCar57/DoorR.obj");
+	Model AC3Hood("resources/objects/AutosClasicos/SportCar57/Hood.obj");
+	Model AC3WheelFR("resources/objects/AutosClasicos/SportCar57/WheelFR.obj");
+	Model AC3WheelRR("resources/objects/AutosClasicos/SportCar57/WheelRR.obj");
+	
 	//Autos F1
+	Model AF1("resources/objects/AutosF1/Generic/Body.obj");
+	Model AF1WheelFR("resources/objects/AutosF1/Generic/Wheel_FR.obj");
+	Model AF1WheelRR("resources/objects/AutosF1/Generic/Wheel_RR.obj");
+	
+	Model AF2("resources/objects/AutosF1/Red-bull/Body.obj");
+	Model AF2WheelFR("resources/objects/AutosF1/Red-bull/Wheel_FR.obj");
+	Model AF2WheelRR("resources/objects/AutosF1/Red-bull/Wheel_RR.obj");
+
+	Model AF3("resources/objects/AutosF1/Renault/Body.obj");
 	
 	//Autos modernos
 	Model AM1("resources/objects/AutosModernos/FordGT/Body.obj");
-	Model llantaAM1FR("resources/objects/AutosModernos/FordGT/Wheel_FR.obj");
-	Model llantaAM1RR("resources/objects/AutosModernos/FordGT/Wheel_RR.obj");
+	Model AM1WheelFR("resources/objects/AutosModernos/FordGT/Wheel_FR.obj");
+	Model AM1WheelRR("resources/objects/AutosModernos/FordGT/Wheel_RR.obj");
 
 	Model AM2("resources/objects/AutosModernos/Koenigs/Koenigs.obj");
 	Model llantaAM2("resources/objects/AutosModernos/Koenigs/WheelKoenig.obj");
 	
 	Model AM3("resources/objects/AutosModernos/Speciale95/Body.obj");
-	Model llantaAM3L("resources/objects/AutosModernos/Speciale95/Wheel_L.obj");
+	Model AM3WheelL("resources/objects/AutosModernos/Speciale95/Wheel_L.obj");
 	
 	
 	//Model cubo("resources/objects/cubo/cube02.obj");
@@ -303,6 +330,8 @@ int main()
 	//Carga de modelos animados 
 	ModelAnim josh("resources/objects/visitanteJosh/visitanteJosh.dae");
 	josh.initShaders(animShader.ID);
+	ModelAnim Rot("resources/objects/visitanteJosh/Rot.dae");
+	Rot.initShaders(animShader.ID);
 	ModelAnim megan("resources/objects/visitanteMegan/visitanteMegan.dae");
 	megan.initShaders(animShader.ID);
 
@@ -451,22 +480,69 @@ int main()
 		model = glm::scale(model, glm::vec3(6.0f,1.0f,6.0f));
 		staticShader.setMat4("model", model);
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
-		Pista.Draw(staticShader);
+		//Pista.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Autos Clasicos
 		// -------------------------------------------------------------------------------------------------------------------------
+
+		//HotRod
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(100.0f, -6.0f, 170.0f));
+		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 150.0f));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setMat4("model", model);
-		//AC1.Draw(staticShader);
+		AC1.Draw(staticShader);
+
+		//80S
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(150.0f, 0.0f, 150.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AC2.Draw(staticShader);
+				
+		//Sport57
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(200.0f, 0.0f, 150.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AC3.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Autos F1
 		// -------------------------------------------------------------------------------------------------------------------------
+
+		//Generic
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 200.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+		staticShader.setMat4("model", model);
+		AF1.Draw(staticShader);
+
+		//Red-bull
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(150.0f, 0.0f, 200.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AF2.Draw(staticShader);
+		
+		//Renault
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(200.0f, 0.0f, 200.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setMat4("model", model);
+		AF3.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Autos Modernos
@@ -474,7 +550,7 @@ int main()
 		
 		//FordGT
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 150.0f));
+		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 300.0f));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
@@ -483,7 +559,7 @@ int main()
 
 		//Koenigs
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(150.0f, 0.0f, 150.0f));
+		model = glm::translate(model, glm::vec3(150.0f, 0.0f, 300.0f));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
@@ -493,28 +569,28 @@ int main()
 		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setMat4("model", model);
-		llantaAM2.Draw(staticShader);//Derecha delantera
+		//llantaAM2.Draw(staticShader);//Derecha delantera
 
 		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 22.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		llantaAM2.Draw(staticShader);//Izquierda delantera
+		//llantaAM2.Draw(staticShader);//Izquierda delantera
 
 		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -22.5f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setMat4("model", model);
-		llantaAM2.Draw(staticShader);//Derecha trasera
+		//llantaAM2.Draw(staticShader);//Derecha trasera
 
 		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, -0.5f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		llantaAM2.Draw(staticShader);//Izquierda trasera
+		//llantaAM2.Draw(staticShader);//Izquierda trasera
 
 		//Speciale95
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(200.0f, 0.0f, 150.0f));
+		model = glm::translate(model, glm::vec3(200.0f, 0.0f, 300.0f));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
@@ -688,6 +764,9 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		animacion ^= true;
+
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		orienta += 3.0f;
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)

@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 13.11.2023 00:49:08
+# File Created: 17.11.2023 03:11:35
 
-newmtl Material__77
+newmtl Material__72
 	Ns 10.0000
 	Ni 1.5000
 	d 1.0000
@@ -12,5 +12,5 @@ newmtl Material__77
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka RIMSTOCK_05_dif.png
-	map_Kd RIMSTOCK_05_dif.png
+	map_Ka wp_tire_01_alt_dif.png
+	map_Kd wp_tire_01_alt_dif.png

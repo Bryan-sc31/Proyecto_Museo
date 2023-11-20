@@ -109,6 +109,8 @@ void saveFrame(void)
 {
 	//printf("frameindex %d\n", FrameIndex);
 	std::cout << "Frame Index = " << FrameIndex << std::endl;
+	std::cout << "Movimiento de auto x = " << movAuto_x << std::endl;
+	std::cout << "Movimiento de auto z = " << movAuto_z << std::endl;
 
 	KeyFrame[FrameIndex].posX = posX;
 	KeyFrame[FrameIndex].posY = posY;
@@ -267,8 +269,22 @@ int main()
 	// Carga de modelos
 	// -------------------------------------------------------------------------------------------------------------------------
 	Model piso("resources/objects/piso/piso.obj");
-	Model Room("resources/objects/Room/Room.obj");
+	Model Plataforma("resources/objects/Plataforma/Plataforma.obj");
 	Model Pista("resources/objects/Pista/Pista2.obj");
+	
+	Model MuseoPiso("resources/objects/Museo/Piso.obj");
+	Model MuseoFrente("resources/objects/Museo/Frente.obj");
+	Model MuseoLetre("resources/objects/Museo/Letrero.obj");
+	Model MuseoIzq("resources/objects/Museo/Izquierda.obj");
+	Model MuseoDer("resources/objects/Museo/Derecha.obj");
+	Model MuseoTrasera("resources/objects/Museo/Trasera.obj");
+	//Model MuseoLetrero("resources/objects/Museo/Letrero.obj");
+	Model MuseoEntrada("resources/objects/Museo/LlantaF.obj");
+	Model MuseoRAC("resources/objects/Museo/RoomAC.obj");
+	Model MuseoRAF1("resources/objects/Museo/RoomAF1.obj");
+	Model MuseoRAM("resources/objects/Museo/RoomAM.obj");
+
+	/*
 	Model botaDer("resources/objects/Personaje/bota.obj");
 	Model piernaDer("resources/objects/Personaje/piernader.obj");
 	Model piernaIzq("resources/objects/Personaje/piernader.obj");
@@ -278,7 +294,7 @@ int main()
 	Model cabeza("resources/objects/Personaje/cabeza.obj");
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
-	Model casaVieja("resources/objects/casa/OldHouse.obj");
+	*/
 	
 	//Autos clasicos
 	Model AC1("resources/objects/AutosClasicos/33HotRod/Body.obj");
@@ -330,8 +346,6 @@ int main()
 	//Carga de modelos animados 
 	ModelAnim josh("resources/objects/visitanteJosh/visitanteJosh.dae");
 	josh.initShaders(animShader.ID);
-	ModelAnim Rot("resources/objects/visitanteJosh/Rot.dae");
-	Rot.initShaders(animShader.ID);
 	ModelAnim megan("resources/objects/visitanteMegan/visitanteMegan.dae");
 	megan.initShaders(animShader.ID);
 
@@ -457,23 +471,98 @@ int main()
 		model = glm::scale(model, glm::vec3(0.2f));
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -70.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
+		
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Estructura de museo
+		// -------------------------------------------------------------------------------------------------------------------------
+		//Piso
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		tmp = model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		//casaVieja.Draw(staticShader);
+		MuseoPiso.Draw(staticShader);
+		
+		//Pared frente
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoFrente.Draw(staticShader);
 
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Rooms
-		// -------------------------------------------------------------------------------------------------------------------------
+		//Letrero de museo
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoLetre.Draw(staticShader);
+
+		//Entrada de media llanta
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoEntrada.Draw(staticShader);
+
+		//Pared izquierda
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoIzq.Draw(staticShader);
+
+		//Pared derecha
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoDer.Draw(staticShader);
+		
+		//Pared trasera
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoTrasera.Draw(staticShader);
+		
+		//Cuarto carros clasicos
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoRAC.Draw(staticShader);
+		
+		//Cuarto carros F1
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoRAF1.Draw(staticShader);
 		
 		//Cuarto carros modernos
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		MuseoRAM.Draw(staticShader);
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Fin de la estructura de museo
+		// -------------------------------------------------------------------------------------------------------------------------
+
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Cuarto carros clasicos
+		// -------------------------------------------------------------------------------------------------------------------------
+				
+		
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Cuarto carros F1
+		// -------------------------------------------------------------------------------------------------------------------------
+
+		
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Cuarto carros Modernos
+		// -------------------------------------------------------------------------------------------------------------------------
+		
+		//Plataforma para exponer autos
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 70.0f));
 		model = glm::scale(model, glm::vec3(0.5f));
 		staticShader.setMat4("model", model);
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		//Room.Draw(staticShader);
+		//Plataforma.Draw(staticShader);
 
 		//Pista
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 70.0f));
@@ -485,7 +574,7 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Autos Clasicos
 		// -------------------------------------------------------------------------------------------------------------------------
-
+		/*
 		//HotRod
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(100.0f, 0.0f, 150.0f));
@@ -493,7 +582,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setMat4("model", model);
-		AC1.Draw(staticShader);
+		//AC1.Draw(staticShader);
 
 		//80S
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -502,7 +591,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setMat4("model", model);
-		AC2.Draw(staticShader);
+		//AC2.Draw(staticShader);
 				
 		//Sport57
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -511,7 +600,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setMat4("model", model);
-		AC3.Draw(staticShader);
+		//AC3.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Autos F1
@@ -596,7 +685,7 @@ int main()
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
 		staticShader.setMat4("model", model);
 		AM3.Draw(staticShader);
-		
+		*/
 
 		/*
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -766,7 +855,13 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		animacion ^= true;
 
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-		orienta += 3.0f;
+		movAuto_x += 10.0f;
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		movAuto_x -= 10.0f;
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		movAuto_z += 10.0f;
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+		movAuto_z -= 10.0f;
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
